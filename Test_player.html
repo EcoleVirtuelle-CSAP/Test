@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive video player with hotspots">
   <title>Test Player</title>
   <style>
     /* Basic styles for the video container */
@@ -36,13 +35,13 @@
 
     .hotspot {
       position: absolute;
-      bottom: 10%; /* Aligns with the bottom-left corner */
-      left: 5%; /* Adjust to match the button position */
-      width: 10%; /* Adjust width */
-      height: 8%; /* Adjust height */
-      z-index: 10;
-      cursor: pointer;
-      /* background: rgba(255, 0, 0, 0.3); Uncomment for debugging */
+      bottom: 10%; /* Adjusts hotspot near bottom-left corner */
+      left: 5%;    /* Adjusts hotspot 5% from the left */
+      width: 10%;  /* Set appropriate width */
+      height: 8%;  /* Set appropriate height */
+      z-index: 10; /* Ensure it is above the video */
+      pointer-events: auto; /* Ensure it is clickable */
+      background: none; /* No visible background */
     }
   </style>
 </head>
@@ -60,20 +59,15 @@
   </div>
 
   <script>
-    // Ensure the DOM is fully loaded
     document.addEventListener('DOMContentLoaded', () => {
-      // Select all elements with the 'hotspot' class
       const hotspots = document.querySelectorAll('.hotspot');
 
-      // Attach a click event listener to each hotspot
       hotspots.forEach(hotspot => {
         hotspot.addEventListener('click', () => {
-          // Open the link in a new tab
           window.open('https://sites.google.com/sepne.ca/evmath11/accueil', '_blank');
         });
       });
 
-      // Log for debugging
       console.log(`${hotspots.length} hotspot(s) initialized.`);
     });
   </script>
