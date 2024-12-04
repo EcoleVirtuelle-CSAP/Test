@@ -35,13 +35,14 @@
 
     .hotspot {
       position: absolute;
-      bottom: 10%; /* Adjusts hotspot near bottom-left corner */
-      left: 5%;    /* Adjusts hotspot 5% from the left */
-      width: 10%;  /* Set appropriate width */
-      height: 8%;  /* Set appropriate height */
+      bottom: 10%; /* Bottom-left placement */
+      left: 5%; /* Adjust to match the hotspot area */
+      width: 10%; /* Adjust width */
+      height: 8%; /* Adjust height */
       z-index: 10; /* Ensure it is above the video */
-      pointer-events: auto; /* Ensure it is clickable */
-      background: none; /* No visible background */
+      pointer-events: auto; /* Allow interaction */
+      cursor: pointer; /* Indicate interactivity */
+      background: rgba(255, 0, 0, 0.3); /* Debugging red background */
     }
   </style>
 </head>
@@ -60,15 +61,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const hotspots = document.querySelectorAll('.hotspot');
+      const video = document.getElementById('test-video');
+      const hotspot = document.querySelector('.hotspot');
 
-      hotspots.forEach(hotspot => {
-        hotspot.addEventListener('click', () => {
-          window.open('https://sites.google.com/sepne.ca/evmath11/accueil', '_blank');
-        });
+      // Pause the video when the hotspot becomes visible
+      video.addEventListener('timeupdate', () => {
+        if (video.currentTime >= 2 && video.currentTime <= 6) { // Adjust as needed
+          video.pause();
+        }
       });
 
-      console.log(`${hotspots.length} hotspot(s) initialized.`);
+      // Make the hotspot clickable
+      hotspot.addEventListener('click', () => {
+        window.open('https://sites.google.com/sepne.ca/evmath11/accueil', '_blank');
+      });
     });
   </script>
 </body>
