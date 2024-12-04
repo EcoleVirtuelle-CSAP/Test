@@ -1,49 +1,66 @@
 @charset "utf-8";
 
+/* Reset and Fullscreen Styling */
 html, body {
   margin: 0;
   width: 100%;
-  height: 100%; /* Ensures full height for container scaling */
+  height: 100%; /* Ensures full viewport height */
   text-align: center;
   background-color: #1a1a1a;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: hidden; /* Prevents scrolling issues */
 }
 
+/* Container for the video and iframe */
 .smart-player-embed-container {
   width: 100%;
-  max-width: 100%; /* Prevents overflow on larger screens */
-  height: 0;
-  padding-top: 56.25%; /* Aspect ratio for 16:9 videos */
+  height: 100vh; /* Full viewport height */
   position: relative;
+  overflow: hidden; /* Ensures content stays within bounds */
 }
 
+/* Iframe containing the video */
 .smart-player-embed-iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  border: 0;
+  border: none; /* Removes border around iframe */
+  pointer-events: auto; /* Allows interactivity within iframe */
+  z-index: 1; /* Places the iframe behind overlays */
+  object-fit: contain; /* Ensures the video scales without cropping */
 }
 
-.smart-player-embed-iframe:-ms-fullscreen { 
-  max-width: 100%;
-  max-height: 100%;
+/* Hotspot overlay container */
+.hotspot {
+  position: absolute;
+  z-index: 10; /* Ensures the hotspot is above the iframe */
+  pointer-events: auto; /* Ensures clicks are recognized */
+  cursor: pointer; /* Changes cursor to indicate interactivity */
+  background: rgba(255, 255, 255, 0.1); /* Optional: Adds a semi-transparent overlay to visualize the hotspot */
 }
 
+/* Example of responsive hotspots */
+.hotspot:hover {
+  background: rgba(255, 255, 255, 0.2); /* Optional: Highlights the hotspot on hover */
+}
+
+/* Adjustments for smaller screens */
 @media screen and (max-height: 480px) {
   .smart-player-embed-container {
-    padding-top: 75%; /* Adjusts for smaller screens */
+    height: 75vh; /* Adjusts height for small screens */
   }
 
-  .smart-player-embed-iframe {
-    max-height: 100vh;
+  .hotspot {
+    /* Scale the hotspots if needed */
+    transform: scale(0.8); /* Example scaling for small screens */
   }
 }
 
+/* Maintain Aspect Ratio for Larger Screens */
 @media screen and (min-width: 1280px) {
   .smart-player-embed-container {
-    padding-top: 56.25%; /* Maintain aspect ratio for widescreen displays */
+    height: 100vh; /* Ensures full viewport height */
   }
 }
