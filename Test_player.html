@@ -6,7 +6,7 @@
   <meta name="description" content="Interactive video player with hotspots">
   <title>Test Player</title>
   <style>
-    /* Basic styles for the video container and hotspots */
+    /* Basic styles for the video container */
     body, html {
       margin: 0;
       padding: 0;
@@ -36,17 +36,13 @@
 
     .hotspot {
       position: absolute;
-      top: 20%; /* Adjust to align with your video */
-      left: 40%; /* Adjust to align with your video */
-      width: 20%;
-      height: 10%;
-      background: rgba(255, 0, 0, 0.3); /* Red overlay for debugging */
-      z-index: 10; /* Ensures the hotspot is above the video */
+      bottom: 10%; /* Aligns with the bottom-left corner */
+      left: 5%; /* Adjust to match the button position */
+      width: 10%; /* Adjust width */
+      height: 8%; /* Adjust height */
+      z-index: 10;
       cursor: pointer;
-    }
-
-    .hotspot:hover {
-      background: rgba(255, 0, 0, 0.5); /* Darker red on hover for feedback */
+      /* background: rgba(255, 0, 0, 0.3); Uncomment for debugging */
     }
   </style>
 </head>
